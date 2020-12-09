@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install -y gparted barrier git guake nemo testdisk net-tools linux-image-lowlatency linux-headers-lowlatency build-essential fdupes encfs curl xclip mono-runtime pavucontrol libncurses5-dev v4l-utils v4l2loopback-dkms nasm yasm htop 
+sudo apt install -y gparted barrier git guake nemo testdisk net-tools linux-image-lowlatency linux-headers-lowlatency build-essential fdupes encfs curl xclip mono-runtime pavucontrol libncurses5-dev v4l-utils v4l2loopback-dkms nasm yasm htop clang-10 llvm-10
 # get google chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
