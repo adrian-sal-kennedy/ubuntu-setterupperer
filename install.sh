@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt install -y gparted barrier git guake nemo testdisk net-tools linux-image-lowlatency linux-headers-lowlatency build-essential fdupes encfs curl xclip mono-runtime pavucontrol libncurses5-dev v4l-utils v4l2loopback-dkms nasm yasm htop clang-10 llvm-10
+sudo apt install -y gparted barrier git guake nemo testdisk net-tools linux-image-lowlatency linux-headers-lowlatency build-essential fdupes encfs curl xclip mono-runtime pavucontrol libncurses5-dev v4l-utils v4l2loopback-dkms nasm yasm htop clang-10 llvm-10 libusb-1.0-0-dev mlocate fdupes
 # get google chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -46,6 +46,7 @@ sudo apt update && sudo apt upgrade
 sudo apt install -y kxstudio-repos 
 sudo apt install -y kxstudio-meta-audio-applications 
 sudo apt install -y kxstudio-recommended-all
+sudo apt install -y kxstudio-meta-audio-plugins-lv2 kxstudio-meta-audio-plugins-vst kxstudio-meta-audio-plugins-ladspa kxstudio-meta-audio-plugins-dssi
 # if above doesn't work, do below
 # sudo apt install -y kxstudio-recommended-audio kxstudio-recommended-audio-plugins kxstudio-recommended-video blender inkscape gimp-cbmplugs gimp-data-extras gimp-dds gimp-gap gimp-gluas gimp-gutenprint gimp-texturize
 
@@ -63,3 +64,20 @@ cd ~/Downloads
 wget 'https://zoom.us/client/latest/zoom_amd64.deb'
 sudo dpkg -i ./zoom_amd64.deb 
 sudo apt install -y --fix-broken
+
+sudo apt install printer-driver-escpr
+
+# install yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update && sudo apt install yarn
+
+# install rbenv and ruby stable (as of now, 2.7.2)
+sudo apt remove ruby
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
+rbenv install 2.7.2
+gem install solargraph
+gem install rails
+
+# turn off the annoying calendar setting popup from evolution if you happen to have an account set up:
+gsettings set org.gnome.evolution-data-server.calendar notify-with-tray true
