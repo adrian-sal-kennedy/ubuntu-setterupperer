@@ -81,3 +81,8 @@ gem install rails
 
 # turn off the annoying calendar setting popup from evolution if you happen to have an account set up:
 gsettings set org.gnome.evolution-data-server.calendar notify-with-tray true
+
+# install bubbleupnp server so we can make our google home devices accessible as upnp servers like foobar2000
+wget https://bubblesoftapps.com/bubbleupnpserver/bubbleupnpserver_0.9-6_all.deb
+sudo apt-get install ./bubbleupnpserver_0.9-6_all.deb
+rm bubbleupnpserver_0.9-6_all.deb
