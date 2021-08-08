@@ -86,3 +86,7 @@ gsettings set org.gnome.evolution-data-server.calendar notify-with-tray true
 wget https://bubblesoftapps.com/bubbleupnpserver/bubbleupnpserver_0.9-6_all.deb
 sudo apt-get install ./bubbleupnpserver_0.9-6_all.deb
 rm bubbleupnpserver_0.9-6_all.deb
+
+# install network sharing in our file managers
+sudo apt install gvfs-backends
+# currently nemo-share is not maintained so you'll need to create your shares in nautilus
