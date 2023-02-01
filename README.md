@@ -107,3 +107,29 @@ sudo apt install printer-driver-escpr
 - click the settings gear-icon, select *"Printer Details"*
     - click *"Select from Database..."*
     - Choose *"Epson" on the left, "EPSON ET-2500 Series, Epson Inkjet Printer Driver (ESC/P-R) for Linux"* on the right.
+
+# setup Bluetooth as an alsa device
+- install bluealsa (bluez-alsa?)
+- get current device with:  
+ `bluealsa-aplay -L | awk -F[,=] '{print $4;exit}'`
+- create `~/.asoundrc.template`:
+```bash
+pcm.bluetooth_raw {
+    type plug
+    slave.pcm {
+        type          bluealsa;
+        device        REPLACE_THIS_DEVICE_ID;
+        profile       "a2dp";
+    }
+    hint {
+        show on;
+        description "Bluetooth a2dp (out only)";
+    }
+}
+```
+- replace the appropriate line with the captured devid:  
+ ```bash
+ sed ~/.asoundrc.template -e 's/REPLACE_THIS_DEVICE_ID/'$(bluealsa-aplay -L | awk -F[,=] '{print $4;exit}')'/' > ~/.asoundrc
+ ```
+- set volume with:  
+ `amixer -D bluealsa sset '<control name>' 70%`
